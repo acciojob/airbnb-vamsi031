@@ -4,6 +4,9 @@ import com.driver.model.Booking;
 import com.driver.model.Facility;
 import com.driver.model.Hotel;
 import com.driver.model.User;
+import com.driver.service.ServiceLayer;
+import org.springframework.beans.factory.annotation.Autowire;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +23,8 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/hotel")
 public class HotelManagementController {
+    @Autowired
+    ServiceLayer serve;
 
     @PostMapping("/add-hotel")
     public String addHotel(@RequestBody Hotel hotel){
@@ -30,7 +35,7 @@ public class HotelManagementController {
         //in all other cases return SUCCESS after successfully adding the hotel to the hotelDb.
 
 
-        return null;
+        return serve.addHotel(hotel);
     }
 
     @PostMapping("/add-user")
@@ -39,7 +44,7 @@ public class HotelManagementController {
         //You need to add a User Object to the database
         //Assume that user will always be a valid user and return the aadharCardNo of the user
 
-       return null;
+       return serve.addUser(user);
     }
 
     @GetMapping("/get-hotel-with-most-facilities")
@@ -49,7 +54,7 @@ public class HotelManagementController {
         //Incase there is a tie return the lexicographically smaller hotelName
         //Incase there is not even a single hotel with atleast 1 facility return "" (empty string)
 
-        return null;
+        return serve.getHotelWithMostFacilities();
     }
 
     @PostMapping("/book-a-room")
