@@ -34,8 +34,8 @@ public class HotelManagementService {
         return hotelManagementRepository.bookARoom(booking);
     }
 
-    public int getCountOfBooking(Integer aadharCard) {
-        return hotelManagementRepository.getBookingCount(aadharCard);
+    public int getBookings(Integer aadharCard) {
+        return hotelManagementRepository.getBookings(aadharCard);
     }
 
     public Hotel updateFacility(List<Facility> newFacilities, String hotelName) {

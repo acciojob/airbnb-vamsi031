@@ -79,7 +79,7 @@ public class HotelManagementRepository {
         return amountToBePaid;
     }
 
-    public int getBookingCount(Integer aadharCard) {
+    public int getBookings(Integer aadharCard) {
         return countOfBookings.get(aadharCard);
     }
 
