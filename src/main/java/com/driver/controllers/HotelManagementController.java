@@ -4,8 +4,7 @@ import com.driver.model.Booking;
 import com.driver.model.Facility;
 import com.driver.model.Hotel;
 import com.driver.model.User;
-import com.driver.service.ServiceLayer;
-import org.springframework.beans.factory.annotation.Autowire;
+import com.driver.service.HotelManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,16 +14,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/hotel")
 public class HotelManagementController {
-    @Autowired
-    ServiceLayer serve;
+//    @Autowired
+    HotelManagementService serve = new HotelManagementService();
 
     @PostMapping("/add-hotel")
     public String addHotel(@RequestBody Hotel hotel){
@@ -67,7 +63,7 @@ public class HotelManagementController {
         //If there arent enough rooms available in the hotel that we are trying to book return -1 
         //in other case return total amount paid 
         
-        return 0;
+        return serve.bookARoom(booking);
     }
     
     @GetMapping("/get-bookings-by-a-person/{aadharCard}")
